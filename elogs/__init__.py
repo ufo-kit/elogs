@@ -13,9 +13,6 @@ class Entry(object):
 
         for line in lines[:index]:
             key, value = line.split(':', 1)
-            # print key, value
-            # print unicode(key)
-            # print value.decode('iso-8859-1').encode('utf-8')
             self.attributes[key.decode('iso-8859-1')] = value.lstrip().decode('iso-8859-1')
 
         self.comment = ''.join(lines[index+1:])
