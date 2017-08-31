@@ -115,6 +115,12 @@ to find all entries with `Name` `bar` you would query:
         }
       ]
 
+If you know the entry ID, you can query the data directly, i.e.
+
+    > curl http://127.0.0.1:5000/foo/3
+
+returns the same entry as before.
+
 
 ### Query format
 

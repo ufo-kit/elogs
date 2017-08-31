@@ -24,10 +24,13 @@ class QueryException(ValueError):
     pass
 
 
+def entry_to_dict(e):
+    return dict(id=e.id, date=e.date, attributes=e.attributes)
+
+
 @app.route('/')
 def get_logbooks():
     return jsonify(storage.logbooks.keys())
-
 
 
 @app.route('/<logbook>')
@@ -36,10 +39,7 @@ def get_entries(logbook):
         return jsonify(error="Logbook {} not found".format(logbook)), 404
 
     def result(entries):
-        def to_dict(e):
-            return dict(id=e.id, date=e.date, attributes=e.attributes)
-        
-        return jsonify([to_dict(e) for e in entries])
+        return jsonify([entry_to_dict(e) for e in entries])
 
     log = storage.logbooks[logbook]
     query = request.args.get('q')
@@ -85,6 +85,19 @@ def get_entries(logbook):
         return result(equery(log, q))
     except QueryException as e:
         return jsonify(error=e.message), 400
+
+
+@app.route('/<logbook>/<int:entry>')
+def get_entry(logbook, entry):
+    if not logbook in storage.logbooks:
+        return jsonify(error="Logbook {} not found".format(logbook)), 404
+
+    log = storage.logbooks[logbook]
+
+    if not entry in log.entries:
+        return jsonify(error="Entry {} not found".format(entry)), 404
+
+    return jsonify(entry_to_dict(log.entries[entry]))
 
 
 if __name__ == '__main__':
