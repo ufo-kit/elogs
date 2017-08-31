@@ -54,8 +54,8 @@ class Logbook(object):
         self.entries = {}
 
         for subdir in dir_entries(absolute_entries(path)):
-            entries = (os.path.join(subdir, x) 
-                    for x in sorted(os.listdir(subdir)) 
+            entries = (os.path.join(subdir, x)
+                    for x in sorted(os.listdir(subdir))
                     if x.endswith('.log'))
 
             for log in entries:

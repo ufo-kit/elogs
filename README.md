@@ -47,7 +47,7 @@ between 3 and 6pm, August 23rd 2017:
 from dateutil.parser import parse
 from elogs.query import query, And, Before, After
 
-results = query(log, 
+results = query(log,
     And(
       After(parse('23 Aug 2017 15:00 +0200')),
       Before(parse('23 Aug 2017 18:00 +0200'))
@@ -68,8 +68,8 @@ JSON array with the logbook names:
 
     > curl http://127.0.0.1:5000
     < [
-        "foo", 
-        "bar" 
+        "foo",
+        "bar"
       ]
 
 Querying for a logbook retrieves all logbook entries:
@@ -78,22 +78,22 @@ Querying for a logbook retrieves all logbook entries:
     < [
         {
           "attributes": {
-            "$@MID@$": "2", 
-            "Attachment": "", 
-            "Name": "foo", 
-            "Date": "Wed, 02 Sep 2015 12:53:38 +0200", 
-          }, 
-          "date": "Wed, 02 Sep 2015 12:53:38 GMT", 
+            "$@MID@$": "2",
+            "Attachment": "",
+            "Name": "foo",
+            "Date": "Wed, 02 Sep 2015 12:53:38 +0200",
+          },
+          "date": "Wed, 02 Sep 2015 12:53:38 GMT",
           "id": 2
-        }, 
+        },
         {
           "attributes": {
-            "$@MID@$": "3", 
-            "Attachment": "", 
-            "Name": "bar", 
-            "Date": "Wed, 02 Sep 2015 12:58:06 +0200", 
-          }, 
-          "date": "Wed, 02 Sep 2015 12:58:06 GMT", 
+            "$@MID@$": "3",
+            "Attachment": "",
+            "Name": "bar",
+            "Date": "Wed, 02 Sep 2015 12:58:06 +0200",
+          },
+          "date": "Wed, 02 Sep 2015 12:58:06 GMT",
           "id": 3
         }
       ]
@@ -105,12 +105,12 @@ to find all entries with `Name` `bar` you would query:
     <
         {
           "attributes": {
-            "$@MID@$": "3", 
-            "Attachment": "", 
-            "Name": "bar", 
-            "Date": "Wed, 02 Sep 2015 12:58:06 +0200", 
-          }, 
-          "date": "Wed, 02 Sep 2015 12:58:06 GMT", 
+            "$@MID@$": "3",
+            "Attachment": "",
+            "Name": "bar",
+            "Date": "Wed, 02 Sep 2015 12:58:06 +0200",
+          },
+          "date": "Wed, 02 Sep 2015 12:58:06 GMT",
           "id": 3
         }
       ]
