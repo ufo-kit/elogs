@@ -25,7 +25,7 @@ class QueryException(ValueError):
 
 
 def entry_to_dict(e):
-    return dict(id=e.id, date=e.date, attributes=e.attributes)
+    return dict(id=e.id, date=e.date, attributes=e.attributes, comment=e.comment)
 
 
 @app.route('/')
