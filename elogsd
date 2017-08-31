@@ -45,7 +45,7 @@ def get_entries(logbook):
     query = request.args.get('q')
 
     if query is None:
-        return result(log.entries)
+        return result(log.entries.values())
 
     queries = []
 

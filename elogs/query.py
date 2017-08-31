@@ -51,4 +51,4 @@ class Before(object):
 
 
 def query(logbook, condition):
-    return [x for x in logbook.entries if condition.true(x)]
+    return [x for x in logbook.entries.values() if condition.true(x)]

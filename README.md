@@ -7,18 +7,19 @@ elogs is a Python module and a REST service to access static, local
 
 The API is split into different layers. The lowest layer contains the `Logbook`
 and `Entry` classes representing a single elog logbook and its entries. To load
-the `demo` logbook and list all its entries you have to provide a path like
+the `demo` logbook and list all its `entries` (a dict mapping ID to entry) you
+have to provide a path like
 
 ```python
 import elogs
 
 log = elogs.Logbook('/path/to/logbooks/demo')
 
-for entry in log.entries:
+for entry in log.entries.values():
     print(entry)
 ```
 
-The `Logbook` class provides an `attributes` dict, an integer `id` , a
+The `Entry` class provides an `attributes` dict, an integer `id` , a
 `datetime` `date` and a string `comment`. To enumerate *all* logbooks you can
 use the `Storage` class and pass the root path:
 

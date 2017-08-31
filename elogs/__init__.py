@@ -38,7 +38,7 @@ def parse_entries(path):
         yield group
 
     with open(path) as f:
-        return [Entry(g) for g in group_entries(f.readlines())]
+        return (Entry(g) for g in group_entries(f.readlines()))
 
 
 def absolute_entries(path):
@@ -51,7 +51,7 @@ def dir_entries(entries):
 
 class Logbook(object):
     def __init__(self, path):
-        self.entries = []
+        self.entries = {}
 
         for subdir in dir_entries(absolute_entries(path)):
             entries = (os.path.join(subdir, x) 
@@ -59,7 +59,7 @@ class Logbook(object):
                     if x.endswith('.log'))
 
             for log in entries:
-                self.entries.extend(parse_entries(log))
+                self.entries.update({x.id: x for x in parse_entries(log)})
 
 
 class Storage(object):
