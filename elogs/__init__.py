@@ -15,7 +15,7 @@ class Entry(object):
             key, value = line.split(':', 1)
             self.attributes[key.decode('iso-8859-1')] = value.lstrip().decode('iso-8859-1')
 
-        self.comment = ''.join(lines[index+1:])
+        self.comment = ''.join(lines[index+1:]).decode('iso-8859-1')
         self.id = int(self.attributes.get('$@MID@$', -1))
         self.date = dateutil.parser.parse(self.attributes['Date'])
 
