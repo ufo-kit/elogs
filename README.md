@@ -28,6 +28,11 @@ storage = log.Storage('/path/to/logbooks')
 print(storage.logbooks.keys())
 ```
 
+The `Storage` also allows to watch for changes in the logbooks, passing `True`
+to the `watch` constructor parameter sets up inotify watches if possible. Note
+that the original logbooks are untouched and you need to retrieve the updated
+version by reading it again from the `logbooks` field.
+
 On top of the basic layer, there is a `query` API to filter among attributes and
 date fields. Complex queries can be constructed by combining simple expressions
 and conjunctions. For example to get all the logs of John and Jane Doe you would
